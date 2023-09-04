@@ -1,5 +1,6 @@
 from scores import Score
 from tablero import Tablero
+from bot import Bot
 from logo import logo
 import time
 import os
@@ -20,6 +21,7 @@ while choose != "F" and choose != "B":
 
 tablero = Tablero()
 score = Score()
+bot = Bot()
 
 while True:
     if choose == "F":

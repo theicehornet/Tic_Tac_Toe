@@ -26,12 +26,11 @@ class Tablero:
             except KeyError:
                 pos = 10
                 while pos < 9 and self.positions[pos] != "":
-                    pos = int(input("This position does not exist, choose another place or it's already taken\n"))
+                    pos = int(input("This position does not exist or it's already taken, choose another place\n"))
             except ValueError:
                 pos = 10
                 while pos < 9 and self.positions[pos] != "":
-
-                    pos = int(input("This position does not exist, choose another place or it's already taken\n"))
+                    pos = int(input("This position does not exist or it's already taken, choose another place \n"))
             else:
                 if player == 1:
                     self.positions[pos] = "X"
@@ -40,9 +39,9 @@ class Tablero:
                 return
 
 
-
     def is_position_occupied(self, position):
         return self.positions[position] != ""
+
 
     def is_all_occupied(self):
         answer = None
@@ -53,9 +52,11 @@ class Tablero:
                 return False
         return answer
 
+
     def clean_board(self):
         for pos in self.positions:
             self.positions[pos] = ""
+
 
     def is_end_game(self):
         if self.positions[1] == self.positions[2] and self.positions[1] == self.positions[3]:
