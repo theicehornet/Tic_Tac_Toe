@@ -18,23 +18,29 @@ class Tablero:
             result = self.is_end_game()
             if result[0]:
                 return result[1]
-            if player == 1:
-                pos = int(input("Player 1 turn(X)\n"))
-            else:
-                pos = int(input("Player 2 turn(O)\n"))
             try:
-                if self.positions[pos] != "":
-                    pos = int(input("This place has already been taken, choose another place\n"))
+                if player == 1:
+                    pos = int(input("Player 1 turn(X)\n"))
                 else:
-                    if player == 1:
-                        self.positions[pos] = "X"
-                    else:
-                        self.positions[pos] = "O"
-                    return self.fill_board()
+                    pos = int(input("Player 2 turn(O)\n"))
+                while self.positions[pos] != "":
+                    pos = int(input("This place has already been taken, choose another place\n"))
             except KeyError:
-                pos = int(input("This position does not exist, choose another place\n"))
+                pos = 10
+                while pos < 9 and self.positions[pos] != "":
+                    pos = int(input("This position does not exist, choose another place or it's already taken\n"))
             except ValueError:
-                pos = int(input("This position does not exist, choose another place\n"))
+                pos = 10
+                while pos < 9 and self.positions[pos] != "":
+                    pos = int(input("This position does not exist, choose another place or it's already taken\n"))
+            else:
+                if player == 1:
+                    self.positions[pos] = "X"
+                else:
+                    self.positions[pos] = "O"
+                return self.fill_board()
+
+
 
     def is_position_occupied(self, position):
         return self.positions[position] != ""
@@ -53,9 +59,7 @@ class Tablero:
             self.positions[pos] = ""
 
     def is_end_game(self):
-        if self.is_all_occupied():
-            return [True, "It's a draw"]
-        elif self.positions[1] == self.positions[2] and self.positions[1] == self.positions[3]:
+        if self.positions[1] == self.positions[2] and self.positions[1] == self.positions[3]:
             return [self.is_position_occupied(1), self.positions[1]]
         elif self.positions[4] == self.positions[5] and self.positions[5] == self.positions[6]:
             return [self.is_position_occupied(4), self.positions[4]]
@@ -73,4 +77,6 @@ class Tablero:
             return [self.is_position_occupied(1), self.positions[1]]
         elif self.positions[3] == self.positions[5] and self.positions[5] == self.positions[7]:
             return [self.is_position_occupied(5), self.positions[5]]
+        elif self.is_all_occupied():
+            return [True, "It's a draw"]
         return [False, None]
