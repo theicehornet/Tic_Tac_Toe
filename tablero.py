@@ -1,5 +1,3 @@
-
-
 class Tablero:
     def __init__(self):
         self.positions = {1: "", 2: "", 3: "", 4: "", 5: "", 6: "", 7: "", 8: "", 9: ""}
@@ -26,11 +24,9 @@ class Tablero:
                 while self.positions[pos] != "":
                     pos = int(input("This place has already been taken, choose another place\n"))
             except KeyError:
-                pos = 10
                 while pos < 9 and self.positions[pos] != "":
                     pos = int(input("This position does not exist, choose another place or it's already taken\n"))
             except ValueError:
-                pos = 10
                 while pos < 9 and self.positions[pos] != "":
                     pos = int(input("This position does not exist, choose another place or it's already taken\n"))
             else:
