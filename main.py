@@ -10,8 +10,14 @@ def clean_console():
 
 
 print(logo)
+
 choose = input("Welcome are you gonna play with a friend or wanna challenge a bot?F(friend) or B(bot)\n")
 choose = choose.upper()
+
+while choose != "F" and choose != "B":
+    choose = input("It's not a valid option, try again F(friend) or B(bot)\n")
+    choose = choose.upper()
+
 tablero = Tablero()
 score = Score()
 
@@ -27,8 +33,6 @@ while True:
                 print("The player 1 won")
                 score.increase_point(1)
                 break
-            else:
-                clean_console()
 
             if tablero.is_all_occupied():
                 print("It's a draw")
@@ -40,8 +44,6 @@ while True:
                 print("The player 2 won")
                 score.increase_point(2)
                 break
-            else:
-                clean_console()
 
         score.print_scores()
         choose = input("Do you want to play again? Y(Yes) or N(No)\n")
@@ -56,6 +58,9 @@ while True:
         else:
             print("Option no accepted, finishing the game")
             break
+    else:
+        print("this is where you play against a bot(on development)")
+        break
 
 print("Game finished")
 time.sleep(2)

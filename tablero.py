@@ -18,23 +18,26 @@ class Tablero:
                 return result[1]
             try:
                 if player == 1:
-                    pos = int(input("Player 1 turn(X)\n"))
+                    pos = int(input("Player 1 turn(X):\n"))
                 else:
-                    pos = int(input("Player 2 turn(O)\n"))
+                    pos = int(input("Player 2 turn(O):\n"))
                 while self.positions[pos] != "":
                     pos = int(input("This place has already been taken, choose another place\n"))
             except KeyError:
+                pos = 10
                 while pos < 9 and self.positions[pos] != "":
                     pos = int(input("This position does not exist, choose another place or it's already taken\n"))
             except ValueError:
+                pos = 10
                 while pos < 9 and self.positions[pos] != "":
+
                     pos = int(input("This position does not exist, choose another place or it's already taken\n"))
             else:
                 if player == 1:
                     self.positions[pos] = "X"
                 else:
                     self.positions[pos] = "O"
-                return self.fill_board()
+                return
 
 
 
