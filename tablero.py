@@ -11,33 +11,6 @@ class Tablero:
                 table += f"  {self.positions[pos]}  |"
         return table
 
-    def complete_board(self, player):
-        while True:
-            result = self.is_end_game()
-            if result[0]:
-                return result[1]
-            try:
-                if player == 1:
-                    pos = int(input("Player 1 turn(X):\n"))
-                else:
-                    pos = int(input("Player 2 turn(O):\n"))
-                while self.positions[pos] != "":
-                    pos = int(input("This place has already been taken, choose another place\n"))
-            except KeyError:
-                pos = 10
-                while pos < 9 and self.positions[pos] != "":
-                    pos = int(input("This position does not exist or it's already taken, choose another place\n"))
-            except ValueError:
-                pos = 10
-                while pos < 9 and self.positions[pos] != "":
-                    pos = int(input("This position does not exist or it's already taken, choose another place \n"))
-            else:
-                if player == 1:
-                    self.positions[pos] = "X"
-                else:
-                    self.positions[pos] = "O"
-                return
-
 
     def is_position_occupied(self, position):
         return self.positions[position] != ""

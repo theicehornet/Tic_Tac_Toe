@@ -9,6 +9,5 @@ class Score:
         else:
             self.player2 += 1
 
-    def print_scores(self):
-        print(f"The score of the player 1 is: {self.player1}")
-        print(f"The score of the player 2 is: {self.player2}")
+    def scores(self):
+        return [f"The score of the player 1 is: {self.player1}", f"The score of the player 2 is: {self.player2}"]
