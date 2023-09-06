@@ -6,16 +6,15 @@ class Bot:
         self.range = list(range(1, 10))
 
 
-    def easy(self, player_number):
-        self.range.remove(player_number)
+    def bot_turn(self):
         random_number = random.choice(self.range)
         self.range.remove(random_number)
         return random_number
 
 
-    def medium(self):
-        pass
+    def remove_move(self, number):
+        self.range.remove(number)
 
 
-    def hard(self):
-        pass
+    def reset_range(self):
+        self.range = list(range(1, 10))
